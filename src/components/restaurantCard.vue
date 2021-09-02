@@ -2,14 +2,13 @@
     <div class="card">
         <img class="img" :src="getImg(restaurantInfo.imgUrl)" :alt="restaurantInfo.imgAlt">
         <p class="name-span">{{ restaurantInfo.name }}</p>
-        <p class="note-span">{{ restaurantInfo.note }}</p>
+        <p class="note-span">{{ restaurantInfo.note }} <span class="fa fa-star checked"></span></p>
         <p class="distance-span">à {{ restaurantInfo.distance / 1000 }}km</p>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-// import Restaurant from "../types/restaurants"
 
 export default Vue.extend({
     name: 'RestaurantList',
@@ -18,7 +17,6 @@ export default Vue.extend({
     } },
     methods: {
         getImg: function(item: string) {
-            // console.log(require ('../assets/' + item + ''))
             return (require ('../assets/' + item + ''))
         }
     },
@@ -34,6 +32,9 @@ export default Vue.extend({
         transition: 1s;
     }
 
+    .name-span {
+        font-weight: 900;
+    }
     .note-span {
         color: #2ee891;
     }

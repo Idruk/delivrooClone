@@ -1,12 +1,10 @@
 <template>
     <div>
-        <!-- <div>{{ this.$props.order.sort }}</div> -->
         <transition-group name="list" tag='div'>
             <div class="restaurant-card-list" v-for="restaurant in orderedRestaurants" :key="restaurant.id">
                 <RestaurantCard :restaurantInfo="restaurant" />
             </div>
         </transition-group>
-        <!-- <button v-on:click="b">aaaa</button> -->
     </div>
 </template>
 

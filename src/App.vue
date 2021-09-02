@@ -11,6 +11,7 @@
 
     <div class="site-body">
       <div class="side-bar">
+        <div class="sticky-side-bar">
         <form >
           <div class="radio">
             <input type="radio" id="yes" value='false' v-model="deliver">
@@ -23,11 +24,12 @@
         </form>
         <!--  -->
 
+
         <div class="sort-button">
-          <div v-on:click="radioHidden">Trier <img v-bind:class='isHidden ? "small-arrow" : "small-arrow-rotated"' src="./assets/arrow.png" /></div>
+          <div class="button-check" v-on:click="radioHidden">Trier <img v-bind:class='isHidden ? "small-arrow" : "small-arrow-rotated"' src="./assets/arrow.png" /></div>
           <div v-bind:class='isHidden ? "dropdown-container-hidden" : "dropdown-container"'>
             <form class="sort-items">
-              <div v-for="sorter in sorters" :key="sorter.id">
+              <div class="radio-button" v-for="sorter in sorters" :key="sorter.id">
                 <input type="radio" :id="sorter.id" :value="sorter.value" v-model="order.sort" >
                 <label>{{ sorter.value }}</label>
               </div>
@@ -37,10 +39,10 @@
         <!--  -->
 
         <div class="regime-button">
-          <div v-on:click="regimeHidden" >Régime alimentaires <img v-bind:class='regimeIsHidden ? "small-arrow" : "small-arrow-rotated"'  src="./assets/arrow.png" /></div>
+          <div class="button-check" v-on:click="regimeHidden" >Régime alimentaires <img v-bind:class='regimeIsHidden ? "small-arrow" : "small-arrow-rotated"'  src="./assets/arrow.png" /></div>
           <div v-bind:class='regimeIsHidden ? "regime-dropdown-container-hidden" : "regime-dropdown-container"'>
             <form class="regime-items">
-              <div v-for="regime in order.regimes" :key="regime.id">
+              <div class="radio-button" v-for="regime in order.regimes" :key="regime.id">
                 <input type="checkbox" v-model="regime.checked">
                 <label>{{ regime.type }}</label>
               </div>
@@ -48,7 +50,7 @@
           </div>
         </div>
 
-
+        </div>
       </div>
       <RestaurantList :order="order" :restaurants="staticData" />
     </div>
@@ -56,6 +58,7 @@
 </template>
 
 <script lang="ts">
+
 import Vue from 'vue';
 import RestaurantList from "./components/restaurantList.vue"
 
@@ -131,7 +134,6 @@ export default Vue.extend({
 
   .site-body {
     display: flex;
-     /* border: 5px solid #000000; */
   }
 
   .title {
@@ -144,7 +146,6 @@ export default Vue.extend({
   .search {
     box-sizing: border-box;
     font-size: 16px;
-    /* line-height: 24px; */
     border: 1px solid #e8ebeb;
     border-radius: 4px;
     opacity: 1;
@@ -155,16 +156,28 @@ export default Vue.extend({
   }
 
   .search-div {
-    /* text-align: center; */
     padding-left: 30%;
     margin-bottom: 5px;
   }
 
+  .button-check {
+    font-weight: bold;
+  }
   .side-bar {
     width: 15%;
     min-width: 250px;
     margin-left: 1em;
   }
+
+  .sticky-side-bar {
+    top: 3em;
+    position: sticky;
+  }
+
+  .radio-button {
+    padding-bottom: 2em;
+  }
+
   .radio {
     font-size: 14px;
     padding-top: 1em;
@@ -172,9 +185,11 @@ export default Vue.extend({
   }
 
   .sort-button {
+    cursor: pointer;
     padding-top: 1em;
-    border-bottom: 1px solid #969696;
-    border-top: 1px solid #969696;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #969696;
+    border-top: 2px solid #969696;
     font-size: 14px;
   }
 
@@ -197,8 +212,10 @@ export default Vue.extend({
   }
 
   .regime-button {
+    cursor: pointer;
     padding-top: 1em;
-    border-bottom: 1px solid #969696;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #969696;
     font-size: 14px;
   }
 
