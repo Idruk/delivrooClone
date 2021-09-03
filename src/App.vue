@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="title">
-      <p>deliveroo</p>
+      <img class="logo" src="./assets/deliveroo.png" alt="logo" />
       <div class="search-div">
         <input class="search" type="text" placeholder="plats, restaurants ou types de cuisine">
       </div>
@@ -248,5 +248,11 @@ export default Vue.extend({
   {
       list-style-type: none;
   }
+
+  .logo {
+    width: 10em;
+    height: 5em;
+  }
+
 
 </style>
